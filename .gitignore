@@ -1,0 +1,22 @@
+# Hanya berkas proyek web yang boleh masuk repository.
+/*
+!/.gitignore
+!/index.html
+!/package.json
+!/package-lock.json
+!/tsconfig.json
+!/vite.config.ts
+!/src/
+!/public/
+!/tests/
+
+node_modules/
+dist/
+.cache/
+*.tsbuildinfo
+.agents/
+agents/
+AGENTS.md
+*.pdf
+*.docx
+.env*

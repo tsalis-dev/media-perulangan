@@ -1,0 +1,120 @@
+.visualizer { padding: var(--space-12); min-height: 650px; }
+.workspace { display: grid; grid-template-columns: 1.1fr 1fr; gap: 24px; }
+.source, .runtime { min-width: 0; padding: 24px; border-radius: var(--radius-panel); }
+.source { background: var(--canvas); }
+.runtime { background: var(--teal-pale); }
+.panelHeading, .outputHeader { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.panelHeading h2, .outputHeader h2 { font-size: 16px; font-weight: 700; }
+.panelHeading > span, .outputHeader > span { font-size: 11px; color: var(--muted); }
+.code { margin: 24px -8px; overflow-x: auto; font-size: clamp(18px, 1.6vw, 24px); line-height: 1.7; }
+.code code { font-size: inherit; }
+.codeRow { display: flex; gap: 16px; align-items: baseline; padding: 5px 8px; white-space: pre; border-left: 3px solid transparent; }
+.lineNumber { font-size: 12px; color: var(--muted); user-select: none; }
+.activeRow { background: #cfe5e7; border-left-color: var(--teal); border-radius: 0 4px 4px 0; }
+.activeRow .lineNumber { color: var(--teal-deep); font-weight: 700; }
+.anatomy { display: flex; gap: 24px; padding-top: 20px; margin: 0; border-top: 1px solid var(--line); }
+.anatomy > div { flex: 1; min-width: 0; }
+.anatomy dt { font-size: 12px; color: var(--teal-deep); font-weight: 700; }
+.anatomy dd { display: flex; flex-direction: column; gap: 8px; margin: 10px 0 0; }
+.anatomy code { font-size: 19px; font-weight: 500; }
+.anatomy dd > span { font-size: 12px; color: var(--muted); }
+.sourceNote { margin-top: 20px; font-size: 12px; line-height: 1.8; color: var(--muted); }
+.memory { display: flex; align-items: baseline; gap: 16px; margin: 24px 0 16px; }
+.memory > code { font-size: 22px; color: var(--teal-deep); }
+.memory > span:first-of-type { color: var(--teal-deep); font-size: 24px; }
+.memory strong { font-family: var(--mono); font-size: 60px; line-height: 1; font-weight: 500; color: var(--teal-deep); font-variant-numeric: tabular-nums; }
+.memory > span:last-child { margin-left: auto; font-size: 12px; color: var(--muted); }
+.rangeTrack { display: flex; gap: 8px; align-items: flex-start; min-height: 58px; margin-bottom: 20px; }
+.rangeTrack > span { position: relative; display: grid; place-items: center; width: 42px; height: 38px; border-bottom: 2px solid #adcdd1; font-family: var(--mono); font-size: 19px; border-radius: 4px 4px 0 0; }
+.rangeTrack .currentValue { background: var(--teal-deep); color: var(--paper); border-bottom-color: var(--teal-deep); }
+.rangeTrack .excludedValue { color: var(--muted); border: 1px dashed var(--muted); margin-left: 8px; text-decoration: line-through; }
+.excludedValue small { position: absolute; top: 40px; font-family: 'Manrope', sans-serif; font-size: 10px; }
+.condition { display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 58px; margin-bottom: 20px; border-top: 1px solid #adcdd1; border-bottom: 1px solid #adcdd1; }
+.condition > code { font-size: 22px; color: var(--teal-deep); }
+.condition > span { font-size: 13px; font-weight: 700; color: var(--teal-deep); }
+.output { display: flex; gap: 8px; list-style: none; min-height: 84px; padding: 0; margin: 16px 0 0; flex-wrap: wrap; align-items: flex-start; }
+.outputTicket { width: 56px; padding: 8px; text-align: center; background: var(--paper); border-top: 3px solid var(--teal); border-bottom: 1px dashed #adcdd1; animation: print-output var(--motion) both; }
+.outputTicket > span { display: block; font-size: 10px; color: var(--muted); }
+.outputTicket > strong { display: block; margin-top: 4px; font-family: var(--mono); font-size: 28px; font-weight: 500; }
+.emptyOutput { font-size: 14px; line-height: 1.8; color: var(--muted); padding-top: 12px; max-width: 35ch; min-height: 84px; margin: 16px 0 0; }
+.explanation { display: flex; align-items: center; gap: 20px; background: var(--amber-pale); border-left: 4px solid var(--amber); border-radius: 0 8px 8px 0; padding: 16px 20px; margin-top: 24px; min-height: 76px; }
+.phaseLabel { font-size: 12px; font-weight: 800; min-width: 72px; }
+.explanation p { font-size: 17px; font-weight: 600; line-height: 1.6; }
+.controls { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 20px; }
+.controls > button { font-size: 14px; }
+.finishButton { min-height: 44px; padding: 12px 16px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); color: var(--ink); font-weight: 700; }
+.finishButton:hover:enabled { border-color: var(--teal); background: var(--teal-pale); }
+.finishButton:disabled { color: var(--muted); background: var(--canvas); }
+@keyframes print-output { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (min-width: 1000px) and (max-height: 1000px) {
+  .visualizer { padding: 20px 32px; min-height: 520px; }
+  .heading { margin-bottom: 16px; }
+  .heading > p { display: none; }
+  .source, .runtime { padding: 16px; }
+  .code { font-size: 20px; line-height: 1.45; margin: 12px -8px; }
+  .codeRow { padding-top: 3px; padding-bottom: 3px; }
+  .anatomy { padding-top: 12px; gap: 16px; }
+  .anatomy code { font-size: 16px; }
+  .anatomy dd { margin-top: 6px; gap: 4px; }
+  .sourceNote { margin-top: 12px; }
+  .memory { margin-top: 20px; }
+  .memory strong { font-size: 48px; }
+  .rangeTrack, .condition { margin-bottom: 12px; }
+  .explanation { margin-top: 12px; padding: 12px 16px; min-height: 56px; }
+  .explanation p { font-size: 15px; }
+  .controls { margin-top: 12px; gap: 12px; }
+  .controls > button { min-height: 44px; padding: 10px 14px; }
+}
+
+@media (max-width: 1150px) {
+  .visualizer { padding: 16px 24px; }
+  .workspace { gap: 16px; grid-template-columns: 1.15fr 1fr; }
+  .source, .runtime { padding: 16px; }
+  .panelHeading { flex-wrap: wrap; gap: 4px 12px; }
+  .code { font-size: 18px; }
+  .memory { gap: 12px; }
+  .memory > code { font-size: 19px; }
+  .memory > span:last-child { font-size: 11px; }
+  .anatomy { gap: 12px; }
+  .anatomy code { font-size: 15px; }
+  .anatomy dd > span { font-size: 11px; }
+  .condition > code { font-size: 20px; }
+  .condition > span { font-size: 12px; }
+  .rangeTrack > span { width: 36px; }
+}
+
+@media (max-width: 800px) {
+  .visualizer { padding: 32px; }
+  .workspace { grid-template-columns: 1fr; gap: 24px; }
+  .source, .runtime { padding: 24px; }
+  .code { font-size: 21px; }
+  .anatomy code { font-size: 18px; }
+  .controls { gap: 12px; }
+  .explanation { align-items: flex-start; flex-direction: column; gap: 8px; }
+}
+
+@media (max-width: 550px) {
+  .visualizer { padding: 28px 20px; }
+  .source, .runtime { padding: 16px; }
+  .code { font-size: 15px; line-height: 1.7; }
+  .codeRow { gap: 12px; }
+  .anatomy { flex-wrap: wrap; gap: 16px; }
+  .anatomy > div { flex: 1 1 80px; }
+  .anatomy code { font-size: 15px; }
+  .anatomy dd > span { font-size: 11px; }
+  .memory { flex-wrap: wrap; }
+  .memory strong { font-size: 46px; }
+  .memory > span:last-child { margin-left: 0; }
+  .rangeTrack { gap: 5px; }
+  .rangeTrack > span { width: 30px; font-size: 17px; }
+  .rangeTrack .excludedValue { margin-left: 4px; }
+  .outputTicket { width: 38px; padding: 8px 4px; }
+  .outputTicket > strong { font-size: 24px; }
+  .outputTicket > span { font-size: 8px; }
+  .outputHeader { flex-wrap: wrap; gap: 8px; }
+  .explanation { padding: 16px; }
+  .explanation p { font-size: 16px; }
+  .controls { flex-direction: column; }
+  .controls > button { width: 100%; }
+}

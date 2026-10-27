@@ -1,0 +1,26 @@
+.demo { margin: 24px 0; }
+.choices { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.choices button { min-height: 44px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); color: var(--ink); font-size: 14px; font-weight: 700; }
+.choices button[aria-pressed="true"] { color: var(--teal-deep); background: var(--teal-pale); border-color: var(--teal); }
+.workspace { display: grid; grid-template-columns: 1.1fr 1fr; gap: 24px; padding: 24px; background: var(--canvas); border-radius: 12px; }
+.workspace > div { min-width: 0; }
+.workspace h4 { font-size: 15px; margin: 0 0 16px; }
+.workspace h4 span { float: right; font-size: 12px; color: var(--muted); font-weight: 500; }
+.code { margin: 0; overflow-x: auto; font-size: 14px; line-height: 2; }
+.code code { font-size: inherit; }
+.code code > span { display: block; padding: 4px 8px; border-left: 3px solid transparent; white-space: pre; }
+.code small { display: inline-block; width: 24px; color: var(--muted); font-size: 11px; }
+.code code > .active { background: var(--teal-pale); border-color: var(--teal); font-weight: 700; }
+.demo .workspace p { font-size: 13px; line-height: 1.7; margin-top: 16px; color: var(--muted); }
+.console { background: var(--paper); padding: 16px; border-radius: 8px; }
+.console ol { height: 220px; overflow-y: auto; margin: 0; padding: 0; list-style: none; }
+.console ol li { font-family: var(--mono); font-size: 15px; margin: 0; padding: 4px 0; line-height: 1.8; animation: appear 180ms ease-out; }
+.console li span { display: inline-block; width: 40px; color: var(--muted); font-size: 11px; }
+.motionChoice { display: flex; align-items: center; gap: 8px; min-height: 44px; margin-top: 12px; font-size: 13px; color: var(--muted); cursor: pointer; }
+.motionChoice input { width: 18px; height: 18px; accent-color: var(--teal-deep); }
+.demo .status { font-size: 14px; line-height: 1.7; min-height: 48px; margin-top: 16px; color: var(--teal-deep); }
+@keyframes appear { from { transform: translateY(4px); opacity: .5; } to { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .console ol li { animation: none; } }
+.demo[data-still="true"] .console ol li { animation: none; }
+@media (max-width: 1150px) { .workspace { grid-template-columns: 1fr; } }
+@media (max-width: 550px) { .workspace { padding: 16px; gap: 20px; } .code { font-size: 13px; } .choices button { flex: 1; } }

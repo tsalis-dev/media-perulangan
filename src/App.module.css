@@ -1,0 +1,78 @@
+.app { max-width: 1560px; margin: auto; padding: 0 48px; }
+.skipLink { position: fixed; top: -100px; left: 20px; z-index: 10; background: var(--ink); color: var(--paper); padding: 16px; border-radius: 8px; }
+.skipLink:focus { top: 12px; }
+.header { min-height: 88px; display: flex; align-items: center; gap: 32px; }
+.brand { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; text-decoration: none; font-size: 25px; font-weight: 800; letter-spacing: -1px; }
+.brandMark { display: grid; place-items: center; width: 38px; height: 42px; border-radius: 9px; background: var(--teal); color: var(--paper); transform: rotate(-7deg); }
+.brandMark svg { width: 24px; height: 24px; }
+.brandLight { font-weight: 500; }
+.brandDot { color: var(--teal); }
+.brand small { display: block; font-size: 11px; font-weight: 500; letter-spacing: 0; color: var(--muted); margin-top: 2px; }
+.mainNav { display: flex; align-self: stretch; gap: 32px; margin-left: auto; }
+.mainNav a { display: flex; align-items: center; min-height: 48px; color: var(--muted); font-size: 16px; font-weight: 700; border-bottom: 3px solid transparent; text-decoration: none; padding: 0 4px; }
+.mainNav a[aria-current] { color: var(--teal-deep); border-bottom-color: var(--teal); }
+.mainNav a:hover, .toolNav a:hover { color: var(--teal-deep); }
+.fullscreenButton { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 10px 16px; border: 1px solid var(--line); border-radius: var(--radius-control); background: var(--paper); color: var(--ink); font-size: 13px; font-weight: 600; }
+.fullscreenButton:hover:enabled { border-color: var(--teal); }
+.fullscreenButton svg { width: 18px; height: 18px; }
+.toolNav { display: flex; gap: 28px; align-items: stretch; overflow-x: auto; scrollbar-width: thin; }
+.toolNav a { flex-shrink: 0; display: flex; align-items: center; min-height: 56px; padding: 0 4px; border-bottom: 3px solid transparent; text-decoration: none; font-size: 14px; font-weight: 700; color: var(--muted); }
+.toolNav a[aria-current] { color: var(--teal-deep); border-bottom-color: var(--teal); }
+.toolNav a:focus-visible { outline-offset: -4px; }
+.labStage { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-panel); overflow: hidden; }
+.readingStage { background: var(--paper); border-radius: var(--radius-panel); }
+.subject { font-size: 14px; color: var(--teal-deep); font-weight: 700; margin-bottom: 16px; }
+.slideHeading { display: flex; justify-content: space-between; gap: 32px; align-items: flex-end; margin-bottom: 32px; }
+.slideHeading .subject { margin-bottom: 12px; }
+.slideHeading h1 { font-size: clamp(32px, 3vw, 48px); letter-spacing: -.05em; line-height: 1.2; }
+.slideHeading > p { flex-shrink: 0; font-size: 15px; line-height: 1.7; color: var(--muted); max-width: 34ch; }
+.primaryButton { display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 48px; padding: 14px 22px; border: 1px solid var(--teal); border-radius: var(--radius-control); background: var(--teal); color: var(--paper); font-size: 16px; font-weight: 700; text-decoration: none; transition: background var(--motion), transform var(--motion); }
+.primaryButton:hover:enabled, a.primaryButton:hover { background: var(--teal-deep); border-color: var(--teal-deep); }
+.primaryButton:active:enabled { transform: translateY(1px); }
+.primaryButton:disabled { color: var(--teal-deep); background: var(--teal-pale); border-color: #bdd6d9; }
+.resetButton { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 10px; background: transparent; border: 0; border-radius: 8px; color: var(--teal-deep); font-size: 13px; font-weight: 700; }
+.resetButton:hover:enabled { text-decoration: underline; text-underline-offset: 4px; }
+.resetButton:disabled { color: var(--muted); }
+.discussion { display: flex; gap: 24px; align-items: center; background: var(--amber-pale); border-left: 4px solid var(--amber); padding: 18px 24px; border-radius: 0 8px 8px 0; margin-top: 24px; }
+.discussion > span { font-size: 12px; line-height: 1.6; font-weight: 700; max-width: 19ch; flex-shrink: 0; }
+.discussion > p { font-size: 18px; line-height: 1.6; font-weight: 600; }
+.footer { min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 24px; color: var(--muted); font-size: 12px; }
+.footer a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--teal-deep); font-weight: 700; }
+.footer svg { width: 16px; height: 16px; }
+.error { padding: 12px 16px; margin-bottom: 12px; background: var(--amber-pale); font-size: 14px; }
+@media (min-width: 1000px) and (max-height: 1000px) {
+  .header { min-height: 72px; }
+  .toolNav a { min-height: 48px; }
+  .slideHeading { margin-bottom: 24px; }
+  .slideHeading h1 { font-size: 36px; }
+  .discussion { padding: 12px 20px; margin-top: 20px; }
+  .discussion > p { font-size: 16px; }
+  .footer { min-height: 48px; }
+}
+@media (max-width: 1150px) { .app { padding: 0 24px; } .header { gap: 24px; } .mainNav { gap: 24px; } }
+@media (max-width: 800px) {
+  .header { gap: 16px; flex-wrap: wrap; padding-top: 16px; }
+  .brand { font-size: 23px; }
+  .fullscreenButton { margin-left: auto; }
+  .mainNav { order: 3; width: 100%; margin: 0; gap: 32px; }
+  .mainNav a { min-height: 52px; }
+  .slideHeading { display: block; }
+  .slideHeading > p { margin-top: 16px; font-size: 16px; max-width: none; }
+  .slideHeading > p br { display: none; }
+  .discussion { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .discussion > span { max-width: none; }
+  .footer { align-items: flex-start; flex-direction: column; gap: 4px; padding: 16px 0; line-height: 1.7; }
+}
+@media (max-width: 550px) {
+  .app { padding: 0 16px; }
+  .header { gap: 12px; }
+  .brand { font-size: 22px; gap: 8px; }
+  .brandMark { width: 31px; height: 35px; }
+  .fullscreenButton { padding: 10px; }
+  .fullscreenButton span { font-size: 11px; max-width: 82px; }
+  .subject { font-size: 13px; }
+  .slideHeading h1 { font-size: 30px; }
+  .slideHeading > p { font-size: 15px; }
+  .discussion { padding: 16px; }
+  .discussion > p { font-size: 16px; }
+}
