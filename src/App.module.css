@@ -10,17 +10,23 @@
 .brand small { display: block; font-size: 11px; font-weight: 500; letter-spacing: 0; color: var(--muted); margin-top: 2px; }
 .mainNav { display: flex; align-self: stretch; gap: 32px; margin-left: auto; }
 .mainNav a { display: flex; align-items: center; min-height: 48px; color: var(--muted); font-size: 16px; font-weight: 700; border-bottom: 3px solid transparent; text-decoration: none; padding: 0 4px; }
-.mainNav a[aria-current] { color: var(--teal-deep); border-bottom-color: var(--teal); }
+.mainNav a[aria-current] { color: var(--teal-deep); }
 .mainNav a:hover, .toolNav a:hover { color: var(--teal-deep); }
+.mainNav a, .toolNav a { position: relative; transition: color var(--motion); }
+.mainNav a[aria-current], .toolNav a[aria-current] { border-bottom-color: transparent; }
+.mainNav a::after, .toolNav a::after { content: ''; position: absolute; left: 0; right: 0; bottom: -3px; height: 3px; background: var(--teal); transform: scaleX(0); transition: transform var(--motion); }
+.mainNav a[aria-current]::after, .toolNav a[aria-current]::after { transform: scaleX(1); }
 .fullscreenButton { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 10px 16px; border: 1px solid var(--line); border-radius: var(--radius-control); background: var(--paper); color: var(--ink); font-size: 13px; font-weight: 600; }
 .fullscreenButton:hover:enabled { border-color: var(--teal); }
 .fullscreenButton svg { width: 18px; height: 18px; }
 .toolNav { display: flex; gap: 28px; align-items: stretch; overflow-x: auto; scrollbar-width: thin; }
 .toolNav a { flex-shrink: 0; display: flex; align-items: center; min-height: 56px; padding: 0 4px; border-bottom: 3px solid transparent; text-decoration: none; font-size: 14px; font-weight: 700; color: var(--muted); }
-.toolNav a[aria-current] { color: var(--teal-deep); border-bottom-color: var(--teal); }
+.toolNav a[aria-current] { color: var(--teal-deep); }
 .toolNav a:focus-visible { outline-offset: -4px; }
 .labStage { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-panel); overflow: hidden; }
 .readingStage { background: var(--paper); border-radius: var(--radius-panel); }
+.pageTransition { animation: pageEnter var(--motion); }
+@keyframes pageEnter { from { opacity: .65; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 .subject { font-size: 14px; color: var(--teal-deep); font-weight: 700; margin-bottom: 16px; }
 .slideHeading { display: flex; justify-content: space-between; gap: 32px; align-items: flex-end; margin-bottom: 32px; }
 .slideHeading .subject { margin-bottom: 12px; }

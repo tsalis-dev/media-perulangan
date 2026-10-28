@@ -1,4 +1,4 @@
-import type { Ref } from 'react';
+import { useRef, useState, type Ref } from 'react';
 import Icon from './Icon';
 import NameLoopDemo from './NameLoopDemo';
 import shared from './App.module.css';
@@ -18,6 +18,8 @@ const topics = [
 ] as const;
 
 export default function Theory({ headingRef }: { headingRef: Ref<HTMLHeadingElement> }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
   return <>
     <div className={styles.intro}>
       <div>
@@ -38,9 +40,26 @@ export default function Theory({ headingRef }: { headingRef: Ref<HTMLHeadingElem
     </div>
 
     <div className={styles.readingLayout}>
-      <aside className={styles.contents}>
-        <nav aria-label="Daftar isi materi"><h2>Dalam materi ini</h2>{topics.map(([id, label]) => <a key={id} href={`#materi-${id}`}>{label}</a>)}</nav>
-        <p>Untuk guru dan siswa SMA/SMK. Bagian bacaan dapat dipakai kembali setelah pembelajaran.</p>
+      <aside className={styles.contents} data-open={menuOpen} onKeyDown={event => {
+        if (event.key === 'Escape' && menuOpen) {
+          setMenuOpen(false);
+          menuButtonRef.current?.focus();
+        }
+      }}>
+        <button ref={menuButtonRef} className={styles.contentsToggle} aria-expanded={menuOpen} aria-controls="daftar-materi" onClick={() => setMenuOpen(open => !open)}>
+          <span className={styles.menuIcon} aria-hidden="true"><span /><span /><span /></span>
+          Daftar materi
+          <span className={styles.menuHint}>{menuOpen ? 'Tutup' : `${topics.length} bahasan`}</span>
+        </button>
+        <div id="daftar-materi" className={styles.contentsBody}>
+          <div className={styles.contentsInner}>
+            <nav aria-label="Daftar isi materi"><h2>Dalam materi ini</h2>{topics.map(([id, label]) => <a key={id} href={`#materi-${id}`} onClick={() => {
+              setMenuOpen(false);
+              document.getElementById(`materi-${id}`)?.focus({ preventScroll: true });
+            }}>{label}</a>)}</nav>
+            <p>Untuk guru dan siswa SMA/SMK. Bagian bacaan dapat dipakai kembali setelah pembelajaran.</p>
+          </div>
+        </div>
       </aside>
       <article className={styles.article} aria-label="Penjelasan perulangan Python">
         <section aria-labelledby="materi-konsep">

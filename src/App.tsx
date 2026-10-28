@@ -48,7 +48,7 @@ export default function App() {
       section.scrollIntoView({ block: 'start' });
     } else {
       if (hasNavigated) headingRef.current?.focus({ preventScroll: true });
-      window.scrollTo(0, 0);
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     }
     if (isLab) document.getElementById(`tool-${navigation.tool}`)?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
   }, [navigation.hash, navigation.tool, isLab, activeTool.label]);
@@ -86,7 +86,7 @@ export default function App() {
     {isLab && <nav className={styles.toolNav} aria-label="Alat laboratorium">
       {labTools.map(tool => <a id={`tool-${tool.id}`} href={`#lab/${tool.id}`} key={tool.id} aria-current={tool.id === navigation.tool ? 'page' : undefined}>{tool.label}</a>)}
     </nav>}
-    <main id="isi" tabIndex={-1} className={isLab ? styles.labStage : styles.readingStage}>
+    <main key={isLab ? navigation.tool : 'materi'} id="isi" tabIndex={-1} className={`${isLab ? styles.labStage : styles.readingStage} ${styles.pageTransition}`}>
       {!isLab ? <Theory headingRef={headingRef} /> : <>
         {navigation.tool === 'manual' && <ManualLab count={manualCount} onChange={setManualCount} headingRef={headingRef} />}
         {navigation.tool === 'for' && <LoopVisualizer mode="for" frameIndex={forFrame} onFrameChange={setForFrame} headingRef={headingRef} />}
